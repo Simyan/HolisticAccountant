@@ -7,18 +7,32 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { TransactionDashboardComponent } from './transaction-dashboard/transaction-dashboard.component';
+import {MatCardModule} from '@angular/material/card';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MasterPageComponent } from './master-page/master-page.component';
+
+import { AppRoutingModule} from './app-routing.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    TransactionListComponent
+    TransactionListComponent,
+    TransactionDashboardComponent,
+    MasterPageComponent,
+
   ],
   imports: [
     BrowserModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatCardModule,
+    FlexLayoutModule,
+    AppRoutingModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
