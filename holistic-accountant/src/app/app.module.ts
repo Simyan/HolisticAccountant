@@ -11,9 +11,8 @@ import { TransactionDashboardComponent } from './transaction-dashboard/transacti
 import {MatCardModule} from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MasterPageComponent } from './master-page/master-page.component';
-
+import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule} from './app-routing.module';
-
 
 @NgModule({
   declarations: [
@@ -32,7 +31,7 @@ import { AppRoutingModule} from './app-routing.module';
     MatCardModule,
     FlexLayoutModule,
     AppRoutingModule,
-    
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

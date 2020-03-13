@@ -3,6 +3,8 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import { Observable, of, merge } from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
+import {Transaction, TransactionList} from '../transaction';
+import {TransactionService} from '../transaction.service';
 
 @Component({
   selector: 'app-transaction-list',
@@ -18,10 +20,12 @@ export class TransactionListComponent implements AfterViewInit {
 
   resultsLength = 1;
 
+  constructor (private transactionService : TransactionService) {}
+
   @ViewChild(MatPaginator) paginator : MatPaginator;
   @ViewChild(MatSort) sort : MatSort;
  
-  constructor() { }
+
 
   //ngOnInit(): void {}
 
@@ -34,11 +38,12 @@ export class TransactionListComponent implements AfterViewInit {
       .pipe(
         startWith([{title: "def", price: 80}]),
         switchMap(() => {
-            return this.mockHttpSource!.getMockTransactions
-              (this.sort.active, this.sort.direction, this.paginator.pageIndex);              
+            return this.transactionService.getTransactionList()
+              //(this.sort.active, this.sort.direction, this.paginator.pageIndex);              
         }),
         map( data => {
           //.resultsLength = data.totalCount;
+          console.log("data!");
           console.log("[2] Item: " + data.items[0].price)
           return data.items
         }),
@@ -53,17 +58,10 @@ export class TransactionListComponent implements AfterViewInit {
   }
 
 
+
 }
 
-export interface TransactionList {
-  items: Transaction[];
-  totalCount: number;
-}
 
-export interface Transaction {
-  title: string;
-  price: number;
-}
 
 export class MockHttpSource{
   
